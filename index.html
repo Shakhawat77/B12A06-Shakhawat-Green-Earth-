@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Earth</title>
+    <!-- font awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+     <!-- tailwind + daisyui -->
+      <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <header>
+        <div class="navbar bg-green-700 md:px-20">
+  <div class="navbar-start">
+    <div class="dropdown">
+      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+      </div>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content bg-green-500 rounded-box z-1 mt-3 w-52 p-2 shadow text-white">
+        <li><a>About</a></li>
+        <li>
+          <a>Gallery</a>
+        </li>
+        <li><a>Plant a Tree</a></li>
+      </ul>
+    </div>
+    <a href="" class="fotn-bold text-white text-2xl">Green Earth</a>
+  </div>
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1 text-white">
+      <li><a>About</a></li>
+      <li>
+          <summary>Gallery</summary>        
+      </li>
+      <li><a>Plant a Tree</a></li>
+    </ul>
+  </div>
+  <div class="navbar-end">
+    <button class="btn bg-yellow-500 text-[#15803D] rounded-full border-none shadow-none hover:bg-gray-200">Plant a Tree</button>
+  </div>
+</div>
+    </header>
+    <section>
+      <div class="flex flex-col md:flex-row justify-center items-center bg-green-200">
+          <div><img src="assets/hero-leaf1.png" alt="" class="mb-5 md:mb-0"></div>
+        <div class="text-center ">
+            <h1 class="text-2xl font-bold mb-5">Plant a Tree, Grow a Future</h1>
+            <p class="mb-5 text-[#2c343e]">Join our mission to plant 1 million trees and make the Earth greener for future
+generations.</p>
+<button class="btn bg-yellow-500 text-[#15803D] rounded-full border-none shadow-none hover:bg-gray-200">Get Involved</button>
+        </div>
+        <div>
+            <img src="assets/hero-leaf2.png" alt="">
+        </div>
+      </div>
+    </section>
+
+<section class="bg-green-50 py-10  ">
+    <h1 class="text-center font-bold text-2xl">Choose   Trees</h1>
+    <section class="py-10 flex p-6 space-x-6">
+        <aside class="w-100">
+          <div>
+              <h2 class="font-semibold mb-4">Categories</h2>
+              <div> <a href="" class="block hover:bg-green-600 hover:text-white text-black px-3 mb-3 py-1 rounded-md">All Trees
+            </a ></div>
+           <div id="level-container">
+
+           </div>
+
+        </aside>
+          </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-white p-4 rounded-xl shadow">
+          <div class="w-full h-40 bg-gray-200 rounded-lg mb-4"></div>
+          <h3 class="font-semibold">Mango Tree</h3>
+          <p class="text-sm text-gray-600 mb-2">A fast-growing tropical tree that produces delicious, juicy mangoes during summer.</p>
+          <span class="inline-block bg-green-100 text-green-700 text-xs px-2 py-1 rounded">Fruit Tree</span>
+          <div class="flex items-center justify-between mt-3">
+            <span class="font-semibold">৳500</span>
+            <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700">Add to Cart</button>
+          </div>
+        </div>
+
+        </div>
+
+        <div>
+             <aside class="w-64 bg-white p-4 rounded-xl shadow">
+      <h2 class="font-semibold mb-4">Your Cart</h2>
+      <div class="space-y-2 text-sm">
+        <div class="flex justify-between items-center bg-green-50 p-2 rounded">
+          <span>Mango Tree</span>
+          <span class="text-gray-500">৳500 × 1</span>
+        </div>
+        <div class="flex justify-between items-center bg-green-50 p-2 rounded">
+          <span>Guava Tree</span>
+          <span class="text-gray-500">৳500 × 1</span>
+        </div>
+      </div>
+      <div class="flex justify-between mt-4 font-semibold">
+        <span>Total:</span>
+        <span>৳1000</span>
+      </div>
+    </aside>
+        </div>
+    </section>
+</section>
+
+
+
+    <script src="index.js"></script>
+</body>
+</html>
