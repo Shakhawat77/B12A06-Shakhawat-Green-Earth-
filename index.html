@@ -65,7 +65,7 @@ generations.</p>
 
 <section class="bg-green-50 py-10  ">
     <h1 class="text-center font-bold text-2xl">Choose   Trees</h1>
-    <section class="py-10 flex p-6 space-x-6">
+    <section class="py-10 flex-cols-1 md:flex p-6 space-x-6 ">
         <aside class="w-100">
           <div>
               <h2 class="font-semibold mb-4">Categories</h2>
@@ -77,18 +77,9 @@ generations.</p>
 
         </aside>
           </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div class="bg-white p-4 rounded-xl shadow">
-          <div class="w-full h-40 bg-gray-200 rounded-lg mb-4"></div>
-          <h3 class="font-semibold">Mango Tree</h3>
-          <p class="text-sm text-gray-600 mb-2">A fast-growing tropical tree that produces delicious, juicy mangoes during summer.</p>
-          <span class="inline-block bg-green-100 text-green-700 text-xs px-2 py-1 rounded">Fruit Tree</span>
-          <div class="flex items-center justify-between mt-3">
-            <span class="font-semibold">৳500</span>
-            <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700">Add to Cart</button>
-          </div>
-        </div>
-
+        <div id="trees-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+         
+           
         </div>
 
         <div>
@@ -112,8 +103,72 @@ generations.</p>
         </div>
     </section>
 </section>
+<section class="bg-green-50 py-10  ">
+    <div>
+        <h1 class="text-2xl font-bold text-center">About the Campaign</h1>
+    </div>
+    <div class="flex flex-col md:flex-row py-20 justify-center items-center">
+        <div class="mb-10">
+            <img src="assets/about.png" alt="">
+        </div>
+        <div class="px-10 text-[#1F293780] ">
+            <p class="md:text-nowrap text-wrap mb-6">Green Earth is a global tree plantation initiative dedicated to fighting <br> climate change. Since our start, we’ve planted over 500,000 trees <br> worldwide. By joining our campaign, you help restore forests, create <br> habitats for wildlife, and combat global warming.</p>
+            <ul class="list-disc px-5">
+                <li>Restoration of natural habitats</li>
+                <li>Improvement of air quality</li>
+                <li>Support for local communities</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="bg-green-200 pb-30">
+    <div>
+        <h1 class="text-2xl font-bold text-center py-20 ">Our Impact</h1>
+    </div>
+    <div class="flex flex-col px-15 justify-center md:flex-row  gap-6">
+        <div>
+            <div class="stats shadow bg-white w-60 ">
+  <div class="stat">
+    <p class="text-2xl font-bold text-green-600 text-center">500K+</p>
+    <p class="text-xs text-center ">Trees Planted</p>
+  </div>
+</div>
+        </div>
+        <div>
+          <div class="stats shadow bg-white w-60 ">
+  <div class="stat">
+    <p class="text-2xl font-bold text-green-600 text-center ">120K+</p>
+    <p class="text-xs text-center ">Communities Involved</p>
+  </div>
+</div>
+        </div>
+        <div>
+            <div class="stats shadow bg-white w-60 ">
+  <div class="stat">
+    <p class="text-2xl font-bold text-green-600 text-center">30K+</p>
+    <p class="text-xs text-center">Countries Reached</p>
+  </div>
+</div>
+        </div>
+
+    </div>
+</section>
 
 
+
+
+
+
+
+<!-- for modal  -->
+<dialog id="tree_modal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <div id="details-container">
+     
+
+    </div>
+</dialog>
 
     <script src="index.js"></script>
 </body>
