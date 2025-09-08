@@ -30,6 +30,53 @@ const loadTrees = (id) => {
       displayTrees(data.plants)
     });
 };
+
+// for alltrees show by default
+const loadAllTrees = () => {
+
+  fetch("https://openapi.programming-hero.com/api/plants")
+    .then(res => res.json())
+    .then(data => {
+      removeActive();
+      const clickBtn = document.getElementById("all-trees");
+      clickBtn.classList.add("active");
+      displayTree(data.plants);
+    })
+    .catch(err => console.error("Error loading trees:", err));
+};
+
+document.getElementById("all-trees").addEventListener("click", (e) => {
+  e.preventDefault();
+  loadAllTrees();
+
+});
+
+
+const displayTree = (trees) => {
+  const treesContainer = document.getElementById("trees-container");
+  treesContainer.innerHTML = "";
+  trees.forEach(tree => {
+    const card = document.createElement("div");
+    card.innerHTML = `
+      <div class="bg-white p-4 rounded-xl shadow">
+        <div><img class="w-full h-40 bg-gray-200 rounded-lg mb-4" src=${tree.image} alt=""></div>
+        <h3 onclick="loadDetail(${tree.id})" class="font-semibold mb-3">${tree.name}</h3>
+        <p class="text-sm text-gray-600 mb-2">${tree.description}</p>
+        <div class="flex items-center justify-between mt-3">
+          <p class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-xl">${tree.category}</p>
+          <span class="font-semibold">৳ <span>${tree.price}</span></span>
+        </div>
+        <button class="w-full mt-4 bg-green-600 text-white px-4 py-2 rounded-full hover:bg-[#15803D] add-to-cart-btn">Add to Cart</button>
+      </div>
+    `;
+    treesContainer.appendChild(card);
+    const addBtn = card.querySelector(".add-to-cart-btn");
+    addBtn.addEventListener("click", () => addToCart(tree));
+  });
+  manageSpinner(false);
+};
+
+
 // for modal
 const loadDetail = async (id) => {
   const url = `https://openapi.programming-hero.com/api/plant/${id}`
@@ -37,6 +84,7 @@ const loadDetail = async (id) => {
   const details = await res.json();
   treeDetails(details.plants);
 };
+
 const treeDetails = (tree) => {
   console.log(tree);
   const detailsModal = document.getElementById("details-container");
@@ -67,31 +115,39 @@ const treeDetails = (tree) => {
   document.getElementById("tree_modal").showModal();
 }
 
-const displayTrees = (trees) => {
+
+function displayTrees(trees) {
   const treesContainer = document.getElementById("trees-container");
   treesContainer.innerHTML = "";
-
   trees.forEach(tree => {
-
     const card = document.createElement("div");
-
-    card.innerHTML = `      <div class="bg-white p-4 rounded-xl shadow">
-          <div > <img class="w-full h-40 bg-gray-200 rounded-lg mb-4" src=${tree.image} alt=""></div>
-          <h3 onclick="loadDetail(${tree.id})" id="tree-name" class="font-semibold mb-3">${tree.name}          
-          </h3>
-          <p class="text-sm text-gray-600 mb-2">${tree.description}</p>
-         
-          <div class="flex items-center justify-between mt-3">
-             <p class=" bg-green-100 text-green-700 text-xs px-2 py-1 rounded-xl">${tree.category} </p>
-            <span class="font-semibold">৳ <span id"taka">${tree.price}</span> </span>            
-          </div>
-          <button class="w-full mt-4 bg-green-600 text-white px-4 py-2 rounded-full hover:bg-[#15803D]">Add to Cart</button>
+    card.innerHTML = `
+      <div class="bg-white p-4 rounded-xl shadow">
+        <div>
+          <img class="w-full h-40 bg-gray-200 rounded-lg mb-4" src="${tree.image}" alt="">
         </div>
-        `;
-    treesContainer.append(card);
+        <h3 onclick="loadDetail(${tree.id})" class="font-semibold mb-3">${tree.name}</h3>
+        <p class="text-sm text-gray-600 mb-2">${tree.description}</p>
+        <div class="flex items-center justify-between mt-3">
+          <p class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-xl">${tree.category}</p>
+          <span class="font-semibold">৳ <span>${tree.price}</span></span>
+        </div>
+        <button class="w-full mt-4 bg-green-600 text-white px-4 py-2 rounded-full hover:bg-[#15803D] add-to-cart-btn">
+          Add to Cart
+        </button>
+      </div>
+    `;
+    const addBtn = card.querySelector(".add-to-cart-btn");
+    addBtn.addEventListener("click", function () {
+      addToCart(tree);
+    });
+    treesContainer.appendChild(card);
   });
   manageSpinner(false);
-};
+}
+
+
+
 
 const displayLesson = (lessons) => {
   const levelContainer = document.getElementById("level-container");
@@ -99,12 +155,77 @@ const displayLesson = (lessons) => {
 
   for (let lesson of lessons) {
     const btnDiv = document.createElement("div");
-    btnDiv.innerHTML = `<li href="" id="btn-${lesson.id}" onclick="loadTrees( '${lesson.id}')" class=" block hover:bg-[#15803D] hover:text-white text-black px-3 mb-3 py-1 rounded-md click-tree">
+    btnDiv.innerHTML = ` 
+    <li href="" id="btn-${lesson.id}" onclick="loadTrees( '${lesson.id}')" class=" block hover:bg-[#15803D] hover:text-white text-black px-3 mb-3 py-1 rounded-md click-tree">
         ${lesson.category_name} </li > `
     levelContainer.append(btnDiv);
   }
 };
 
+const cartContainer = document.getElementById("add-to-cart");
+let cart = [];
 
+const addToCart = (tree) => {
+  const existing = cart.find(item => item.id === tree.id);
+  alert(`${tree.name} has been added to your cart!`);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({ ...tree, quantity: 1 });
+  }
+  renderCart();
+};
+
+function removeFromCart(id) {
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].id === id) {
+      if (cart[i].quantity > 1) {
+        cart[i].quantity = cart[i].quantity - 1;
+      } else {
+        cart.splice(i, 1);
+      }
+      break;
+    }
+  }
+  renderCart();
+};
+const renderCart = () => {
+  if (!cartContainer) return;
+
+  cartContainer.innerHTML = "";
+  const spaceDiv = document.createElement("div");
+  let total = 0;
+  cart.forEach(item => {
+    total += item.price * item.quantity;
+    const itemDiv = document.createElement("div");
+    itemDiv.innerHTML = `
+      <div class="space-y-2 text-sm">
+        <div class="flex justify-between items-center bg-green-50 p-2 rounded">
+          <div>
+            <p> ${item.name} </p>
+          <p class="text-gray-500">৳ <span > ${item.price} </span> × <span> ${item.quantity} </span></p>
+          </div>
+          <button onclick="removeFromCart(${item.id})">×</button>
+          
+        </div >       
+      </div >
+    `;
+    spaceDiv.appendChild(itemDiv);
+  });
+
+  cartContainer.appendChild(spaceDiv);
+  const totalDiv = document.createElement("div");
+  totalDiv.innerHTML = `
+   <div class="flex justify-between mt-4 font-semibold">
+    <p>Total:</p>
+    <p>৳ <span>${total}</span></p>
+  </div>
+  `;
+  cartContainer.appendChild(totalDiv);
+};
 
 loadLessons();
+loadAllTrees();
+
+
+
