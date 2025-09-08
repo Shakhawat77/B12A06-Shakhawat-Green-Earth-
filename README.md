@@ -1,169 +1,68 @@
 ## WELCOME TO ( সহজ সরল সিম্পল ) ASSIGNMENT-006
 
-### 📅 Deadline For 60 marks: 9th September, 2025 (11:59 pm ⏱️)
+### What is the difference between var, let, and const?
+1. var → Old box
 
-### 📅 Deadline For 50 marks : 13th September , 2025 (6:00 pm⏱️)
+a. Can be accessed anywhere in the function, even outside a block { }.
+b.  Can change the value.
+c. Can create the same box twice, which can be confusing.
 
-### 📅 Deadline For 30 marks: Any time after 13the September , 2025 (6:01 pm⏱️).
+2. let → New box
 
----
-# Green Earth
+a. Can only be used inside the block { } where you made it.
+b. Can change the value.
+c. Cannot create the same box twice in the same block.
 
+3. const → Locked box
 
-## Private Repository: https://classroom.github.com/a/nVZrg5R9 
+a. Can only be used inside the block { }.
+b. Cannot change the value.
+c. Good for things that should stay the same.
 
-## Alternative Private Repository: https://classroom.github.com/a/KCGI14ST 
+### What is the difference between map(), forEach(), and filter()?
+1️. forEach() → Just go through the array
 
-## Alternative Private Repository: https://classroom.github.com/a/JMuIYqgK 
+a. Loops through every item in an array.
+b. Does not return anything.
+c. Usually used for side effects (like printing to console or updating the DOM).
 
+2️. map() → Make a new array
 
----
-🌴 API Endpoints
----
-1. Get 🌴All Plants
-```bash
-https://openapi.programming-hero.com/api/plants
-```
+a. Loops through every item in an array.
+b. Returns a new array of the same length.
+c. Does not change the original array.
 
-2. Get 🌴All categories <br/>
-```bash
-https://openapi.programming-hero.com/api/categories
-```
+3️. filter() → Pick only some items
 
+a. Loops through every item in an array.
+b. Returns a new array with only the items that match a condition.
 
-3. Get 🌴plants by categories <br/>
-```bash
-https://openapi.programming-hero.com/api/category/${id}
-```
+###  What are arrow functions in ES6?
 
-```bash
-https://openapi.programming-hero.com/api/category/1
-```
+a. Arrow functions are a shorter syntax for writing functions introduced in ES6.
+b. They inherit this from the surrounding scope instead of having their own.
+c. If the function has a single expression, you can omit the {} and return.
+d. Parentheses around parameters can be omitted if there’s only one parameter.
 
-4. Get 🌴Plants Detail <br/>
+They are mainly used for concise and readable code, especially for small functions.
 
-```bash
-https://openapi.programming-hero.com/api/plant/${id}
-```
+###  How does destructuring assignment work in ES6?
 
-```bash
-https://openapi.programming-hero.com/api/plant/1
-```
----
+Destructuring allows you to extract values from arrays or objects and assign them to variables in a concise way. It reduces the need for repetitive code when accessing properties or array elements.
 
+Main points are:
+a. Array destructuring: Assign elements of an array to variables in order.
+b. Object destructuring: Assign object properties to variables with matching names.
+c. Can be used with nested arrays/objects, default values, and function parameters.
 
+###  Explain template literals in ES6. How are they different from string concatenation?
 
+Template literals are a new way to write strings using backticks (`) instead of quotes (' or ").They allow embedding variables or expressions directly inside a string using ${}.They support multi-line strings without using \n.
 
-## ✅ Main Requirements 
+Main differences from regular string concatenation:
 
-#### 1) Navbar
-
-- Website **logo/name** on the **left**  
-- **Menu items** in the **center** 
-- **Plant a Tree button** on the **right** 
-
-#### 2) Banner 
-- A **background image**  
-- A **title** and **subtitle**  
-- A **centered button**  
-
-#### 3) About Campaign
-- **Section heading**  
-- **Image on the left**, **text on the right**  
-
-#### 4) Our Impact Section 
-- Show **3 cards** with campaign **statistics**  
-
-#### 5) Plant a Tree Today Section & Footer
-- **Form**: Name, Email, Number of Trees  
-- **Footer** with copyright info 
-
-#### 6) Responsiveness 
-- Website must be **mobile responsive**  
-
----
-#### 7) Create a README file to answer the following question-
-
-
-#### 1) What is the difference between var, let, and const?
-
-#### 2) What is the difference between map(), forEach(), and filter()? 
-
-#### 3) What are arrow functions in ES6?
-
-#### 4) How does destructuring assignment work in ES6?
-
-#### 5) Explain template literals in ES6. How are they different from string concatenation?
-
-## ⚙️ Functionalities 
-
-1) Category Loading 
-Load Tree Categories dynamically on the left side.
-
-2) Category Click → Tree Data 
-On clicking a category: load trees of that category.
-
-Display in a 3-column card layout.
-
-3) Card Contents 
- Each card includes:
-
-        - Image
-
-        -  Name
-
-        - Short description
-
-        - Category
-
-        - Price
-
-        - Add to Cart button
-
-4) Modal on Card Click 
-Clicking a tree name on a card opens a modal with full tree details.
-
-
-##  🧪 Challenges 
-
-
-    1) Add to Cart 
-    Clicking Add to Cart: - Adds the tree to Cart List
-                          - Shows tree name 
-
-    2) Total Calculation 
-    Calculate total price of trees in cart.
-
-    3) Remove from Cart 
-    Clicking ❌ removes tree and deducts price from total.
-
-    4) Loading Spinner
-    Show spinner while data is loading.
-
-    5) Active Button State 
-    Highlight active category button when selected.
-
-
-
-🧰 Technology Stack:
-        
-        HTML
-
-        CSS (Vanilla / Tailwind / DaisyUI)
-
-        JavaScript (Vanilla only, no frameworks)
-
-📌 Rules
-✅ At least 5 meaningful commits
-
-❌ No dummy text or Lorem Ipsum — must use relevant content
-
-
-
-
-
-## 🔗 Submission
-- **Live Link :** YOUR_DEPLOYED_URL_HERE  
-- **GitHub Private Repository:** YOUR_REPO_URL_HERE  
+a. Variable embedding: You can insert variables or expressions directly inside a string using ${} instead of using +.
+b. Multi-line strings: You can write strings across multiple lines naturally without using \n.
+c. Readability: Template literals make complex strings much cleaner and easier to read compared to concatenating many parts with +.
 
 ---
