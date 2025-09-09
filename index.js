@@ -3,6 +3,7 @@ const loadLessons = () => {
     .then((res) => res.json())
     .then((json) => displayLesson(json.categories));
 };
+// for snipper
 const manageSpinner = (status) => {
   if (status == true) {
     document.getElementById("spinner").classList.remove("hidden");
@@ -12,24 +13,10 @@ const manageSpinner = (status) => {
     document.getElementById("spinner").classList.add("hidden");
   }
 }
-
 const removeActive = () => {
   const clickTreeBtn = document.querySelectorAll(".click-tree");
   clickTreeBtn.forEach(btn => btn.classList.remove("active"));
 }
-
-const loadTrees = (id) => {
-  manageSpinner(true);
-  const url = `https://openapi.programming-hero.com/api/category/${id}`
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      removeActive();
-      const clickBtn = document.getElementById(`btn-${id}`)
-      clickBtn.classList.add("active");
-      displayTrees(data.plants)
-    });
-};
 
 // for alltrees show by default
 const loadAllTrees = () => {
@@ -50,8 +37,6 @@ document.getElementById("all-trees").addEventListener("click", (e) => {
   loadAllTrees();
 
 });
-
-
 const displayTree = (trees) => {
   const treesContainer = document.getElementById("trees-container");
   treesContainer.innerHTML = "";
@@ -61,7 +46,7 @@ const displayTree = (trees) => {
       <div class="bg-white p-4 rounded-xl shadow">
         <div><img class="w-full h-40 bg-gray-200 rounded-lg mb-4" src=${tree.image} alt=""></div>
         <h3 onclick="loadDetail(${tree.id})" class="font-semibold mb-3">${tree.name}</h3>
-        <p class="text-sm text-gray-600 mb-2">${tree.description}</p>
+        <p class=" line-clamp-2 text-sm text-gray-600 mb-2">${tree.description}</p>
         <div class="flex items-center justify-between mt-3">
           <p class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-xl">${tree.category}</p>
           <span class="font-semibold">৳ <span>${tree.price}</span></span>
@@ -93,7 +78,7 @@ const treeDetails = (tree) => {
     <h2 class="text-xl font-semibold mb-3">${tree.name} </h2>
     <img src=${tree.image} 
          alt=""
-         class="w-full h-48 object-cover rounded-lg mb-4">
+         class="w-full h-48  object-cover rounded-lg mb-4">
     <p class="mb-2">
       <span class="font-semibold">Category:</span>${tree.category}
     </p>
@@ -115,6 +100,19 @@ const treeDetails = (tree) => {
   document.getElementById("tree_modal").showModal();
 }
 
+// showing cart by category
+const loadTrees = (id) => {
+  manageSpinner(true);
+  const url = `https://openapi.programming-hero.com/api/category/${id}`
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      removeActive();
+      const clickBtn = document.getElementById(`btn-${id}`)
+      clickBtn.classList.add("active");
+      displayTrees(data.plants)
+    });
+};
 
 function displayTrees(trees) {
   const treesContainer = document.getElementById("trees-container");
@@ -127,7 +125,7 @@ function displayTrees(trees) {
           <img class="w-full h-40 bg-gray-200 rounded-lg mb-4" src="${tree.image}" alt="">
         </div>
         <h3 onclick="loadDetail(${tree.id})" class="font-semibold mb-3">${tree.name}</h3>
-        <p class="text-sm text-gray-600 mb-2">${tree.description}</p>
+        <p class=" line-clamp-2 text-sm text-gray-600 mb-2">${tree.description}</p>
         <div class="flex items-center justify-between mt-3">
           <p class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-xl">${tree.category}</p>
           <span class="font-semibold">৳ <span>${tree.price}</span></span>
@@ -147,7 +145,7 @@ function displayTrees(trees) {
 }
 
 
-
+// for showing category
 
 const displayLesson = (lessons) => {
   const levelContainer = document.getElementById("level-container");
@@ -162,6 +160,7 @@ const displayLesson = (lessons) => {
   }
 };
 
+// for showing add to cart section
 const cartContainer = document.getElementById("add-to-cart");
 let cart = [];
 
@@ -173,8 +172,9 @@ const addToCart = (tree) => {
   } else {
     cart.push({ ...tree, quantity: 1 });
   }
-  renderCart();
+  TreesCart();
 };
+// cart remove for one by one
 
 function removeFromCart(id) {
   for (let i = 0; i < cart.length; i++) {
@@ -187,18 +187,18 @@ function removeFromCart(id) {
       break;
     }
   }
-  renderCart();
+  TreesCart();
 };
-const renderCart = () => {
+const TreesCart = () => {
   if (!cartContainer) return;
 
   cartContainer.innerHTML = "";
-  const spaceDiv = document.createElement("div");
+  const countCategory = document.createElement("div");
   let total = 0;
   cart.forEach(item => {
     total += item.price * item.quantity;
-    const itemDiv = document.createElement("div");
-    itemDiv.innerHTML = `
+    const categoryDiv = document.createElement("div");
+    categoryDiv.innerHTML = `
       <div class="space-y-2 text-sm">
         <div class="flex justify-between items-center bg-green-50 p-2 rounded">
           <div>
@@ -210,10 +210,11 @@ const renderCart = () => {
         </div >       
       </div >
     `;
-    spaceDiv.appendChild(itemDiv);
+    countCategory.appendChild(categoryDiv);
   });
 
-  cartContainer.appendChild(spaceDiv);
+  // different div for total
+  cartContainer.appendChild(countCategory);
   const totalDiv = document.createElement("div");
   totalDiv.innerHTML = `
    <div class="flex justify-between mt-4 font-semibold">

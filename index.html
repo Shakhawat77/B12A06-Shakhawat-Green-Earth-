@@ -16,12 +16,10 @@
 <body>
 
     <header>
-        <div class="navbar bg-green-700 md:px-20">
+        <div class="navbar bg-green-700 md:px-20 rounded-none">
   <div class="navbar-start">
-    <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
-      </div>
+    <div class="dropdown ">
+     
       <ul
         tabindex="0"
         class="menu menu-sm dropdown-content bg-green-500 rounded-box z-1 mt-3 w-52 p-2 shadow text-white">
@@ -66,8 +64,8 @@ generations.</p>
 
 <section class="bg-green-50 py-10 ">
     <h1 class="text-center font-bold text-2xl">Choose   Trees</h1>
-    <section class="py-10 flex-cols-1 md:flex p-6 space-x-6 ">
-        <aside class="w-100">
+    <section class="py-10 flex-cols-1 md:flex p-6  ">
+        <aside class="md:w-2/8 ">
           <div>
               <h2 class="font-semibold mb-4">Categories</h2>
              <div> <a href="" id="all-trees" class="click-tree block hover:bg-green-600 hover:text-white text-black px-3 mb-3 py-1 rounded-md">All Trees
@@ -79,22 +77,20 @@ generations.</p>
 </div>
         </aside>
           </div>
-          <!-- for loading -->
-            <section id="spinner" class="flex justify-center items-center py-10 hidden ">
+          <!-- for spanning -->
+            <section id="spinner" class="md:w-6/8  flex justify-center items-center py-10 hidden ">
       <span class="loading loading-spinner loading-xs"></span>
 <span class="loading loading-spinner loading-sm"></span>
 <span class="loading loading-spinner loading-md"></span>
 <span class="loading loading-spinner loading-lg"></span>
 <span class="loading loading-spinner loading-xl"></span>
     </section>
-
-        <div id="trees-container" class=" grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6 mb-4">
+        <div id="trees-container" class="md:w-6/8 grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6 mb-4 mx-4">
          
            
         </div>
-
-        <div>
-             <aside class=" w-55 h-full bg-white p-4 rounded-xl shadow">
+        <div class="md:w-2/8 ">
+             <aside class="  h-full bg-white p-4 rounded-xl shadow">
       <h2 class="font-semibold mb-4">Your Cart</h2>
       <div id="add-to-cart">
         
@@ -123,11 +119,11 @@ generations.</p>
     </div>
 </section>
 
-<section class="bg-green-200 pb-30">
+<section class="bg-green-200 pb-30 mx-auto">
     <div>
         <h1 class="text-2xl font-bold text-center py-20 ">Our Impact</h1>
     </div>
-    <div class="flex flex-col px-15 justify-center md:flex-row  gap-6">
+    <div class="flex flex-col w-60 mx-auto md:mx-0 md:flex-row md:w-auto justify-center gap-6">
         <div>
             <div class="stats shadow bg-white w-60 ">
   <div class="stat">
