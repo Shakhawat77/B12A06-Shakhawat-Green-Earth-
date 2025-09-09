@@ -12,35 +12,33 @@ const manageSpinner = (status) => {
     document.getElementById("trees-container").classList.remove("hidden");
     document.getElementById("spinner").classList.add("hidden");
   }
-}
+};
 const removeActive = () => {
   const clickTreeBtn = document.querySelectorAll(".click-tree");
-  clickTreeBtn.forEach(btn => btn.classList.remove("active"));
-}
+  clickTreeBtn.forEach((btn) => btn.classList.remove("active"));
+};
 
 // for alltrees show by default
 const loadAllTrees = () => {
-
   fetch("https://openapi.programming-hero.com/api/plants")
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       removeActive();
       const clickBtn = document.getElementById("all-trees");
       clickBtn.classList.add("active");
       displayTree(data.plants);
     })
-    .catch(err => console.error("Error loading trees:", err));
+    .catch((err) => console.error("Error loading trees:", err));
 };
 
 document.getElementById("all-trees").addEventListener("click", (e) => {
   e.preventDefault();
   loadAllTrees();
-
 });
 const displayTree = (trees) => {
   const treesContainer = document.getElementById("trees-container");
   treesContainer.innerHTML = "";
-  trees.forEach(tree => {
+  trees.forEach((tree) => {
     const card = document.createElement("div");
     card.innerHTML = `
       <div class="bg-white p-4 rounded-xl shadow">
@@ -61,10 +59,9 @@ const displayTree = (trees) => {
   manageSpinner(false);
 };
 
-
 // for modal
 const loadDetail = async (id) => {
-  const url = `https://openapi.programming-hero.com/api/plant/${id}`
+  const url = `https://openapi.programming-hero.com/api/plant/${id}`;
   const res = await fetch(url);
   const details = await res.json();
   treeDetails(details.plants);
@@ -78,7 +75,7 @@ const treeDetails = (tree) => {
     <h2 class="text-xl font-semibold mb-3">${tree.name} </h2>
     <img src=${tree.image} 
          alt=""
-         class="w-full h-48  object-cover rounded-lg mb-4">
+         class="w-120 h-82  object-cover rounded-lg mb-4">
     <p class="mb-2">
       <span class="font-semibold">Category:</span>${tree.category}
     </p>
@@ -98,26 +95,26 @@ const treeDetails = (tree) => {
     `;
 
   document.getElementById("tree_modal").showModal();
-}
+};
 
 // showing cart by category
 const loadTrees = (id) => {
   manageSpinner(true);
-  const url = `https://openapi.programming-hero.com/api/category/${id}`
+  const url = `https://openapi.programming-hero.com/api/category/${id}`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
       removeActive();
-      const clickBtn = document.getElementById(`btn-${id}`)
+      const clickBtn = document.getElementById(`btn-${id}`);
       clickBtn.classList.add("active");
-      displayTrees(data.plants)
+      displayTrees(data.plants);
     });
 };
 
 function displayTrees(trees) {
   const treesContainer = document.getElementById("trees-container");
   treesContainer.innerHTML = "";
-  trees.forEach(tree => {
+  trees.forEach((tree) => {
     const card = document.createElement("div");
     card.innerHTML = `
       <div class="bg-white p-4 rounded-xl shadow">
@@ -144,7 +141,6 @@ function displayTrees(trees) {
   manageSpinner(false);
 }
 
-
 // for showing category
 
 const displayLesson = (lessons) => {
@@ -155,7 +151,7 @@ const displayLesson = (lessons) => {
     const btnDiv = document.createElement("div");
     btnDiv.innerHTML = ` 
     <li href="" id="btn-${lesson.id}" onclick="loadTrees( '${lesson.id}')" class=" block hover:bg-[#15803D] hover:text-white text-black px-3 mb-3 py-1 rounded-md click-tree">
-        ${lesson.category_name} </li > `
+        ${lesson.category_name} </li > `;
     levelContainer.append(btnDiv);
   }
 };
@@ -165,7 +161,7 @@ const cartContainer = document.getElementById("add-to-cart");
 let cart = [];
 
 const addToCart = (tree) => {
-  const existing = cart.find(item => item.id === tree.id);
+  const existing = cart.find((item) => item.id === tree.id);
   alert(`${tree.name} has been added to your cart!`);
   if (existing) {
     existing.quantity += 1;
@@ -188,14 +184,14 @@ function removeFromCart(id) {
     }
   }
   TreesCart();
-};
+}
 const TreesCart = () => {
   if (!cartContainer) return;
 
   cartContainer.innerHTML = "";
   const countCategory = document.createElement("div");
   let total = 0;
-  cart.forEach(item => {
+  cart.forEach((item) => {
     total += item.price * item.quantity;
     const categoryDiv = document.createElement("div");
     categoryDiv.innerHTML = `
@@ -227,6 +223,3 @@ const TreesCart = () => {
 
 loadLessons();
 loadAllTrees();
-
-
-
